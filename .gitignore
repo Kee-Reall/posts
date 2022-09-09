@@ -2,3 +2,4 @@ SSL/*
 node_modules/
 dist/
 config/Variables
+.idea
