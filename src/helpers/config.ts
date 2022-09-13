@@ -5,4 +5,9 @@ dotenv.config({
     path: path.resolve('config','Variables')
 })
 
-export const port = process.env.port ?? 3000
+const dbHost = process.env.dbHost ?? 'localhost'
+const dbPort = process.env.dbPort ?? '27017'
+const dbName = process.env.dbName ?? 'posts'
+
+export const port = process.env.port ?? 8000
+export const dbURI = `mongodb://${dbHost}:${dbPort}/${dbName}`
