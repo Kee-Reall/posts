@@ -1,17 +1,18 @@
-import { MongoClient} from "mongodb";
-import { dbURI } from "./config";
+import { Collection, MongoClient } from "mongodb";
 
-const client = new MongoClient(dbURI)
-
-export const connector = async () => {
+export const connector = async (
+    client: MongoClient,
+    collectionName: string,
+    callback: Function
+) => {
     try {
         await client.connect()
         console.log('connection is up')
-        const collection = client.db().collection('user')
-        const fromDB = await collection.findOne({name: 'admin'})
-        console.log(fromDB)
+        const collection: Collection<Document> = client.db().collection(collectionName)
+        await callback(collection)
         await client.close()
-    }catch (e) {
+        console.log('connector helper is finished')
+    } catch (e) {
         console.log(e)
     }
 }
