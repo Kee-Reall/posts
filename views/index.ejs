@@ -9,5 +9,14 @@
 </head>
 <body>
     <h1><%= `value ${Math.floor(Math.random()*10000000).toString(32)}`%></h1>
+    <% if(result.length) { %>
+        <% result.forEach(({date , author, update, content}) => { %>
+        <div>
+            <h3><%= author %></h3>
+            <span><%= `${date}   ${update}` %></span>
+            <textarea> <%= content %></textarea>
+        </div>
+        <% }) %>
+    <% } %>
 </body>
 </html>
